@@ -23,7 +23,7 @@ fs.readdir("./", (err, files) => {
         })
         const modNamesString = modsNamesArray.join("\n")
         const modString = '-mod="' + modsIdArray.join(";") + "\""
-        const modStringEx = modsIdArray.join(";") + "\""
+        const modStringEx = modsIdArray.join(";")
 
         const result = modNamesString + "\n\n" + modString + "\n\n" + modStringEx
 
@@ -33,6 +33,16 @@ fs.readdir("./", (err, files) => {
                 return console.log(err);
             }
             console.log("The file was saved!");
+
+            fs.unlink(`./${fileName}`, (err) => {
+                if (err) {
+                    console.error(err)
+                    return
+                }
+                console.log("html file removed!");
+
+                //file removed
+            })
         });
 
     });
